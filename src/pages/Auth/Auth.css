@@ -1,0 +1,27 @@
+.page-height {
+  height: 100vh;
+}
+.login {
+  width: 400px;
+  height: min-content;
+  padding: 30px;
+  border-radius: 5px;
+  color: white;
+}
+.bg-image {
+  background-image: url(/src/assets/bg-login.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.inputFocus:focus {
+  box-shadow: none !important;
+}
+.icon-end {
+  position: absolute;
+  top: 60%;
+  right: 5%;
+}
+.fa {
+  cursor: pointer;
+}
