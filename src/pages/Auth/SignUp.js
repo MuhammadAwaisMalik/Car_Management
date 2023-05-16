@@ -30,8 +30,7 @@ const SignUp = () => {
     setUserName(UserName);
     if (UserName.length < 1) {
       setUserNameErr("Enter User Name");
-    }
-    if (UserName.length < 3) {
+    } else if (UserName.length < 3) {
       setUserNameErr("Minimum 3 digits");
     } else {
       setUserNameErr("");
@@ -43,8 +42,7 @@ const SignUp = () => {
     setEmail(Email);
     if (Email.length < 1) {
       setEmailErr("Enter Email");
-    }
-    if (!Email.match(pattern)) {
+    } else if (!Email.match(pattern)) {
       setEmailErr("Invalid Email");
     } else {
       setEmailErr("");
@@ -55,8 +53,7 @@ const SignUp = () => {
     setPhone(Phone);
     if (Phone.length < 1) {
       setPhoneErr("Enter Phone No");
-    }
-    if (Phone.length > 11 || Phone.length < 11) {
+    } else if (Phone.length > 11 || Phone.length < 11) {
       setPhoneErr("Phone must be 11 No");
     } else {
       setPhoneErr("");
@@ -66,14 +63,11 @@ const SignUp = () => {
   const checkValidation = () => {
     if (!name) {
       setNameErr("Enter Name");
-    }
-    if (!userName) {
+    } else if (!userName) {
       setUserNameErr("Enter UserName");
-    }
-    if (!email) {
+    } else if (!email) {
       setEmailErr("Enter Email");
-    }
-    if (!phone) {
+    } else if (!phone) {
       setPhoneErr("Enter Phone");
     } else {
       submit = true;
@@ -95,7 +89,7 @@ const SignUp = () => {
             <img src={CarImage} className="w-100" style={{ height: "100vh" }} />
           </div>
           <div className="col-5">
-            <div className="container p-5 my-2 shadow">
+            <div className="container p-5 my-4 shadow">
               <div className="row">
                 <div className="col-12">
                   <h2 className="fw-bold text-center">SIGN UP</h2>

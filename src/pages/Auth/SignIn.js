@@ -18,8 +18,7 @@ const SignIn = () => {
     setEmail(Email);
     if (Email.length < 1) {
       setEmailErr("Enter Email");
-    }
-    if (!Email.match(pattern)) {
+    } else if (!Email.match(pattern)) {
       setEmailErr("Invalid Email");
     } else {
       setEmailErr("");
@@ -30,8 +29,7 @@ const SignIn = () => {
     setPassword(password);
     if (password.length < 1) {
       setPasswordErr("Enter User Name");
-    }
-    if (password.length < 3) {
+    } else if (password.length < 3) {
       setPasswordErr("Minimum 3 digits");
     } else {
       setPasswordErr("");
@@ -40,8 +38,7 @@ const SignIn = () => {
   const CheckValidation = () => {
     if (!email) {
       setEmailErr("Enter Email");
-    }
-    if (!password) {
+    } else if (!password) {
       setPasswordErr("Enter Phone");
     } else {
       submit = true;
