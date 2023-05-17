@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import randomstring from "randomstring";
 
 import Input, { InputGroup } from "../../components/Input";
 import Button from "../../components/Button";
 import CarImage from "../../assets/signup.jpg";
+import emailjs from "@emailjs/browser";
 
 const SignUp = () => {
   const [name, setName] = useState("");
   const [nameErr, setNameErr] = useState("");
   const [userName, setUserName] = useState("");
+  const [password_s, setPassword_s] = useState();
   const [userNameErr, setUserNameErr] = useState("");
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [phone, setPhone] = useState();
   const [phoneErr, setPhoneErr] = useState("");
   const navigate = useNavigate();
+  const form = useRef();
   let submit = false;
   const handleName = (e) => {
     const Name = e.target.value;
@@ -59,7 +63,14 @@ const SignUp = () => {
       setPhoneErr("");
     }
   };
+  const generatePassword = () => {
+    const password = randomstring.generate({
+      length: 10,
+      charset: "alphanumeric",
+    });
 
+    return password;
+  };
   const checkValidation = () => {
     if (!name) {
       setNameErr("Enter Name");
@@ -75,9 +86,28 @@ const SignUp = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setPassword_s(generatePassword());
+
     checkValidation();
     if (submit === true) {
-      navigate("/");
+      // navigate("/");
+      emailjs
+        .sendForm(
+          "service_13wgdqq",
+          "template_98e42za",
+          form.current,
+          "INiHsr8o9gYKTU0nN"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            alert("Password Sent to Your Email");
+          },
+          (error) => {
+            console.log(error.text);
+            alert("error");
+          }
+        );
     }
   };
 
@@ -94,11 +124,18 @@ const SignUp = () => {
                 <div className="col-12">
                   <h2 className="fw-bold text-center">SIGN UP</h2>
                 </div>
-                <form action="">
+                <form ref={form}>
+                  <input
+                    type="password"
+                    className="d-none"
+                    name="password_send"
+                    value={password_s}
+                  />
                   <InputGroup
                     type="text"
                     id="name"
                     label="Full Name"
+                    name="to_name"
                     labelclassName="fw-normal"
                     placeholder="Enter Full Name"
                     change={handleName}
@@ -123,6 +160,7 @@ const SignUp = () => {
                   <InputGroup
                     type="email"
                     id="email"
+                    name="email_id"
                     label="Email"
                     labelclassName="fw-normal"
                     placeholder="Enter Email"

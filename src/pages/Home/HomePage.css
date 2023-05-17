@@ -1,0 +1,7 @@
+.style-page {
+  height: 90vh;
+  background-image: url(/src/assets/home_bg.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
