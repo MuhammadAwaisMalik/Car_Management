@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Auth.css";
 import Input, { InputGroup } from "../../components/Input";
 import Button from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -10,8 +10,13 @@ const SignIn = () => {
   const [passwordErr, setPasswordErr] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-
+  useEffect(() => {
+    if (localStorage.getItem("isLogin")) {
+      navigate("/homePage");
+    }
+  }, []);
   let submit = false;
+  const navigate = useNavigate();
   const handleEmail = (e) => {
     let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     const Email = e.target.value;
@@ -29,8 +34,8 @@ const SignIn = () => {
     setPassword(password);
     if (password.length < 1) {
       setPasswordErr("Enter User Name");
-    } else if (password.length < 3) {
-      setPasswordErr("Minimum 3 digits");
+    } else if (password.length < 10 || password.length > 10) {
+      setPasswordErr("Enter 10 digits");
     } else {
       setPasswordErr("");
     }
@@ -48,7 +53,8 @@ const SignIn = () => {
     e.preventDefault();
     CheckValidation();
     if (submit === true) {
-      alert("Done");
+      // alert("Logged in");
+      localStorage.setItem("isLogin", true);
     }
   };
   const handleShow = () => {

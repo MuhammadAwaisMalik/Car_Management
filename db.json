@@ -1,221 +1,42 @@
 {
   "car": [
     {
-      "id": 1,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
+      "carName": "Civic",
+      "carModal": "1990",
+      "carColor": "Black",
+      "carCompany": "Honda",
+      "carCategory": "Suv",
+      "id": 1
     },
     {
-      "id": 2,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
+      "carName": "Civic 2",
+      "carModal": "2000",
+      "carColor": "White",
+      "carCompany": "Honda",
+      "carCategory": "Suv",
+      "id": 2
     },
     {
-      "id": 3,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
+      "carName": "mercidies",
+      "carModal": "222",
+      "carColor": "Red",
+      "carCompany": "Brand",
+      "carCategory": "jsdhhg",
+      "id": 3
+    }
+  ],
+  "categories": [
+    {
+      "selectCategory": "Suv",
+      "id": 1
     },
     {
-      "id": 4,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
+      "selectCategory": "sports",
+      "id": 2
     },
     {
-      "id": 5,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 6,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 7,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 8,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 9,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 10,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 11,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 12,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 13,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 14,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 15,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 16,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 17,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 18,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 19,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 20,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 21,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 22,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 23,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 24,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 25,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 26,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 27,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 28,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 29,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 30,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
-    },
-    {
-      "id": 31,
-      "carName": "hello",
-      "carModal": "hsgf",
-      "carCompany": "honda",
-      "carColor": "black"
+      "selectCategory": "hkjhklj",
+      "id": 3
     }
   ]
 }

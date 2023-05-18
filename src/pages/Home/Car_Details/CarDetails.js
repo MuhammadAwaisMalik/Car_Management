@@ -6,6 +6,7 @@ import FetchData from "../../../components/FetchData";
 import Model from "../../../components/Model";
 import Form from "../../../components/Models/Create";
 import Delete from "../../../components/Models/Delete";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const CarDetails = () => {
   const [carName, setCarName] = useState("");
@@ -17,12 +18,39 @@ const CarDetails = () => {
   const [carCompany, setCarCompany] = useState("");
   const [carCompanyErr, setCarCompanyErr] = useState("");
   const [carDetails, setCarDetails] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [carCategory, setCarCategory] = useState();
   const [delId, setDelId] = useState("");
   const [editId, setEditId] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [order, setOrder] = useState("ASC");
   useEffect(() => {
     fetchData();
+    FetchData("GET", "http://localhost:5000/categories")
+      .then((resp) => {
+        setCategory(resp);
+      })
+      .catch((err) => {
+        console.log(err.msg);
+      });
   }, []);
-  const carData = { carName, carModal, carColor, carCompany };
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = carDetails.slice(firstPostIndex, lastPostIndex);
+  const carData = { carName, carModal, carColor, carCompany, carCategory };
+  const Sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...carDetails].sort((a, b) => (a[col] > b[col] ? 1 : -1));
+      setCarDetails(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...carDetails].sort((a, b) => (a[col] < b[col] ? 1 : -1));
+      setCarDetails(sorted);
+      setOrder("ASC");
+    }
+  };
   function fetchData() {
     FetchData("GET", "http://localhost:5000/car")
       .then((resp) => {
@@ -57,6 +85,7 @@ const CarDetails = () => {
         setCarColor("");
         setCarName("");
         setCarModal("");
+        setCarCategory("");
       })
       .catch((err) => {
         console.log(err.msg);
@@ -90,6 +119,7 @@ const CarDetails = () => {
         setCarColor("");
         setCarName("");
         setCarModal("");
+        setCarCategory("");
       })
       .catch((err) => {
         console.log(err.msg);
@@ -109,47 +139,31 @@ const CarDetails = () => {
         <h2 className="pt-3 text-center">Car Details</h2>
         <div className="container my-5">
           <div className="row">
-            <div className="col-5">
-              {/* <Card
-                card_title="Total Cars :"
-                card_desc_title={carDetails.length}
-                card_desc_title_style="mt-5 text-end fs-3"
-                card_style="bg-light shadow-sm border-0"
-              /> */}
-              <div class="mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                  <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                      <div class="col mr-2">
-                        <div class="fw-bold text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Total Cars
-                        </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800 py-3">
-                          {carDetails.length}
-                        </div>
+            <div className="mb-4 col-md-4 col-sm-6 col-12 m-auto">
+              <div className="card border-left-primary shadow h-100 py-2">
+                <div className="card-body">
+                  <div className="row no-gutters align-items-center">
+                    <div className="col mr-2">
+                      <div className="fw-bold text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Total Cars
                       </div>
-                      <div class="col-auto">
-                        <i class="fa fa-car fa-2x text-gray-300"></i>
+                      <div className="fs-2 fw-bold mb-0 font-weight-bold text-gray-800 py-3">
+                        {carDetails.length}
                       </div>
+                    </div>
+                    <div className="col-auto">
+                      <i className="fa fa-car fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-5 m-auto">
-              <Card
-                card_title="Total Category :"
-                card_desc_title={carDetails.length}
-                card_desc_title_style="mt-5 text-end fs-3"
-                card_style="bg-light shadow-sm border-0"
-              />
             </div>
           </div>
         </div>
         <div className="bg-light">
           <div className="container py-5">
             <div className="row">
-              <div className="text-center">
+              <div className="text-end">
                 <button
                   className="btn btn-success my-2"
                   type="button"
@@ -160,46 +174,52 @@ const CarDetails = () => {
                 </button>
               </div>
               <div className="card shadow mb-4">
-                <div class="col-sm-12 col-md-6">
-                  <div class="dataTables_length" id="dataTable_length">
-                    <label>
-                      Show{" "}
-                      <select
-                        name="dataTable_length"
-                        aria-controls="dataTable"
-                        className="custom-select custom-select-sm form-control form-control-sm"
-                      >
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                      </select>
-                      entries
-                    </label>
+                <div className="card-body">
+                  <div className="dataTables_length my-2" id="dataTable_length">
+                    <span className="fw-bold">Show Entries</span>
+                    <select
+                      name="dataTable_length"
+                      aria-controls="dataTable"
+                      className="custom-select custom-select-sm form-control"
+                      style={{ width: "70px" }}
+                      onChange={(e) => setPostsPerPage(e.target.value)}
+                    >
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
                   </div>
-                </div>
-                <div class="card-body">
                   <div className="table-responsive">
                     <table
                       className="table table-bordered"
                       id="dataTable"
                       width="100%"
-                      cellspacing="0"
+                      cellSpacing="0"
                     >
                       <thead>
                         <tr>
                           <th scope="col">#</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Model</th>
-                          <th scope="col">Company</th>
-                          <th scope="col">Color</th>
-                          <th scope="col" className="w-25">
-                            Action
+                          <th scope="col" onClick={() => Sorting("name")}>
+                            Name
                           </th>
+                          <th scope="col" onClick={() => Sorting("model")}>
+                            Model
+                          </th>
+                          <th scope="col" onClick={() => Sorting("company")}>
+                            Company
+                          </th>
+                          <th scope="col" onClick={() => Sorting("color")}>
+                            Color
+                          </th>
+                          <th scope="col" onClick={() => Sorting("category")}>
+                            Category
+                          </th>
+                          <th scope="col">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {carDetails.map((car, index) => {
+                        {currentPosts.map((car, index) => {
                           return (
                             <tr key={index}>
                               <th scope="row">{index + 1}</th>
@@ -207,10 +227,11 @@ const CarDetails = () => {
                               <td>{car.carModal}</td>
                               <td>{car.carCompany}</td>
                               <td>{car.carColor}</td>
+                              <td>{car.carCategory}</td>
                               <td>
                                 <Button
                                   type="button"
-                                  className="btn btn-primary mx-2"
+                                  className="btn btn-primary m-2"
                                   data_toogle="modal"
                                   data_target="#editModal"
                                   click={() => {
@@ -221,7 +242,7 @@ const CarDetails = () => {
                                 </Button>
                                 <Button
                                   type="button"
-                                  className="btn btn-danger mx-2"
+                                  className="btn btn-danger m-2"
                                   data_toogle="modal"
                                   data_target="#delete"
                                   click={() => {
@@ -236,6 +257,12 @@ const CarDetails = () => {
                         })}
                       </tbody>
                     </table>
+                    <Pagination
+                      totalPosts={carDetails.length}
+                      postsPerPage={postsPerPage}
+                      setCurrentPage={setCurrentPage}
+                      currentPage={currentPage}
+                    />
                   </div>
                 </div>
               </div>
@@ -261,6 +288,24 @@ const CarDetails = () => {
           CompanyName={carCompany}
           CompanyNameHandle={CompanyNameHandle}
         />
+        <div className="dataTables_length my-2" id="dataTable_length">
+          <span className="fw-bold">Select Category</span>
+          <select
+            name="category"
+            className="custom-select custom-select-sm form-control"
+            value={carCategory}
+            onChange={(e) => setCarCategory(e.target.value)}
+          >
+            {category.map((cat, index) => {
+              <option value="Select">Select</option>;
+              return (
+                <>
+                  <option key={index}>{cat.selectCategory}</option>
+                </>
+              );
+            })}
+          </select>
+        </div>
       </Model>
       <Delete
         Del_id="delete"

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Nabar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("isLogin")) {
+      navigate("/");
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLogin");
+  };
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        <a className="navbar-brand" href="#">
           <h5>Car management</h5>
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -17,30 +27,31 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
+
         <div
-          class="collapse navbar-collapse d-flex justify-content-end"
+          className="collapse navbar-collapse d-flex justify-content-end"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/homePage">
                 Car Details
-              </a>
+              </Link>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <Link className="nav-link" to="/carCategory">
                 Cetegory
-              </a>
+              </Link>
             </li>
           </ul>
 
-          <div class="dropdown pe-5 text-white">
+          <div className="dropdown pe-5 text-white">
             <i className="fa fa-user-circle-o fs-3 dropbtn mx-3"></i>
-            <div class="dropdown-content">
-              <Link className="btn btn-sm btn-danger">
-                Logout&nbsp;&nbsp;<i class="fa fa-sign-out"></i>
+            <div className="dropdown-content">
+              <Link className="btn btn-sm btn-danger" onClick={handleLogout}>
+                Logout&nbsp;&nbsp;<i className="fa fa-sign-out"></i>
               </Link>
             </div>
           </div>

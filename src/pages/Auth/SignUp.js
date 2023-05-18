@@ -90,7 +90,7 @@ const SignUp = () => {
 
     checkValidation();
     if (submit === true) {
-      // navigate("/");
+      alert("Password Sent On Your Email");
       emailjs
         .sendForm(
           "service_13wgdqq",
@@ -115,10 +115,10 @@ const SignUp = () => {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-7 px-0">
+          <div className="col-md-7 px-0 d-none d-md-block">
             <img src={CarImage} className="w-100" style={{ height: "100vh" }} />
           </div>
-          <div className="col-5">
+          <div className="col-md-5 col-12">
             <div className="container p-5 my-4 shadow">
               <div className="row">
                 <div className="col-12">

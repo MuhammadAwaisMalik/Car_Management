@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomePage.css";
-import CarDetails from "./Car_Details";
+import CarDetails from "./Car_Details/CarDetails";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("isLogin")) {
+      navigate("/homePage");
+      console.log("login");
+    } else {
+      navigate("/signUp");
+      console.log("login_Out");
+    }
+  }, []);
+
   return (
     <>
       <div className="container-fluid style-page d-flex justify-content-center align-items-center">
         <div className="text-white row">
           <div className=" text-center">
-            <h3 className="col-6 m-auto py-2">Welcome To Our Site</h3>
-            <p className="col-6 m-auto  py-2">
+            <h3 className="col-md-6 m-auto py-2">Welcome To Our Site</h3>
+            <p className="col-md-6 m-auto  py-2 d-none d-md-block">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
               nesciunt iure est cumque libero, minima placeat unde culpa
               voluptatibus repudiandae error pariatur qui dolor ratione, quasi

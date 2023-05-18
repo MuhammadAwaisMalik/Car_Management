@@ -1,0 +1,26 @@
+.container_not {
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.h1_not {
+  font-size: 60px;
+  color: #343a40;
+  margin-bottom: 30px;
+}
+
+.p_not {
+  font-size: 18px;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.btn_not {
+  font-size: 18px;
+  padding: 10px 30px;
+  border-radius: 30px;
+  background-color: #007bff;
+  color: #fff;
+}
