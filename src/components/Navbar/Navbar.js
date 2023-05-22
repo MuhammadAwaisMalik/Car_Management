@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import "./Nabar.css";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../Button";
+import { useAuth } from "../context/AuthProvider";
 const Navbar = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!localStorage.getItem("isLogin")) {
-      navigate("/");
-    }
-  }, []);
-
+  const { setIsLogin } = useAuth();
   const handleLogout = () => {
-    localStorage.removeItem("isLogin");
+    // localStorage.removeItem("isLogin");
+    setIsLogin(false);
+    navigate("/signIn");
   };
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -50,9 +49,12 @@ const Navbar = () => {
           <div className="dropdown pe-5 text-white">
             <i className="fa fa-user-circle-o fs-3 dropbtn mx-3"></i>
             <div className="dropdown-content">
-              <Link className="btn btn-sm btn-danger" onClick={handleLogout}>
-                Logout&nbsp;&nbsp;<i className="fa fa-sign-out"></i>
-              </Link>
+              {/* <button className="btn btn-sm btn-danger" onClick={handleLogout}>
+                
+              </Link> */}
+              <Button className="btn btn-sm btn-danger" click={handleLogout}>
+                Logout&nbsp;&nbsp; <i className="fa fa-sign-out"></i>
+              </Button>
             </div>
           </div>
         </div>

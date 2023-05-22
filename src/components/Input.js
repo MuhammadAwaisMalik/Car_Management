@@ -49,6 +49,7 @@ export const InputGroup = ({
   labelClass,
   name,
   children,
+  autoComplete,
   Err,
 }) => {
   return (
@@ -64,6 +65,7 @@ export const InputGroup = ({
           <input
             type={type}
             id={id}
+            autoComplete={autoComplete}
             className={`form-control ${className}`}
             name={name}
             value={value}

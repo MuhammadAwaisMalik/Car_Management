@@ -97,10 +97,10 @@ const Category = () => {
                   <tbody>
                     {categories.map((category, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={category.id}>
                           <th scope="row">{index + 1}</th>
                           <td>{category.selectCategory}</td>
-                          <td>
+                          <td className="w-50">
                             <Button
                               type="button"
                               className="btn btn-primary m-2"

@@ -6,6 +6,7 @@ import Input, { InputGroup } from "../../components/Input";
 import Button from "../../components/Button";
 import CarImage from "../../assets/signup.jpg";
 import emailjs from "@emailjs/browser";
+import { useAuth } from "../../components/context/AuthProvider";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -17,7 +18,8 @@ const SignUp = () => {
   const [emailErr, setEmailErr] = useState("");
   const [phone, setPhone] = useState();
   const [phoneErr, setPhoneErr] = useState("");
-  const navigate = useNavigate();
+  const [passArray, setPassArray] = useState([]);
+  const { setUserEmail, setUserPassword } = useAuth();
   const form = useRef();
   let submit = false;
   const handleName = (e) => {
@@ -87,10 +89,8 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setPassword_s(generatePassword());
-
     checkValidation();
     if (submit === true) {
-      alert("Password Sent On Your Email");
       emailjs
         .sendForm(
           "service_13wgdqq",
@@ -101,6 +101,7 @@ const SignUp = () => {
         .then(
           (result) => {
             console.log(result.text);
+            console.log(passArray);
             alert("Password Sent to Your Email");
           },
           (error) => {
@@ -108,6 +109,8 @@ const SignUp = () => {
             alert("error");
           }
         );
+      setUserPassword(password_s);
+      setUserEmail(email);
     }
   };
 
@@ -191,7 +194,7 @@ const SignUp = () => {
                     </Button>
                   </div>
                   <div className="p-4 text-center">
-                    Already user? <Link to="/">SignIn</Link>
+                    Already user ? <Link to="/signIn">SignIn</Link>
                   </div>
                 </form>
               </div>

@@ -4,17 +4,6 @@ import CarDetails from "./Car_Details/CarDetails";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("isLogin")) {
-      navigate("/homePage");
-      console.log("login");
-    } else {
-      navigate("/signUp");
-      console.log("login_Out");
-    }
-  }, []);
-
   return (
     <>
       <div className="container-fluid style-page d-flex justify-content-center align-items-center">

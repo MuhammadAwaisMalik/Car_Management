@@ -60,6 +60,7 @@ const CarDetails = () => {
         console.log(err.msg);
       });
   }
+
   const CarNameHandle = (e) => {
     let CarName = e.target.value;
     setCarName(CarName);
@@ -221,7 +222,7 @@ const CarDetails = () => {
                       <tbody>
                         {currentPosts.map((car, index) => {
                           return (
-                            <tr key={index}>
+                            <tr key={car.id}>
                               <th scope="row">{index + 1}</th>
                               <td>{car.carName}</td>
                               <td>{car.carModal}</td>
