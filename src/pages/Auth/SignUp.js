@@ -84,11 +84,11 @@ const SignUp = () => {
       setPhoneErr("Enter Phone");
     } else {
       submit = true;
+      setPassword_s(generatePassword());
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPassword_s(generatePassword());
     checkValidation();
     if (submit === true) {
       emailjs

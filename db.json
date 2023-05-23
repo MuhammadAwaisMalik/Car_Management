@@ -17,11 +17,11 @@
       "id": 2
     },
     {
-      "carName": "mercidies",
-      "carModal": "222",
-      "carColor": "Red",
-      "carCompany": "Brand",
-      "carCategory": "jsdhhg",
+      "carName": "CVIC",
+      "carModal": "6788",
+      "carColor": "black",
+      "carCompany": "Toyota",
+      "carCategory": "Honda",
       "id": 3
     }
   ],
@@ -31,12 +31,16 @@
       "id": 1
     },
     {
-      "selectCategory": "sports",
+      "selectCategory": "Sports",
       "id": 2
     },
     {
       "selectCategory": "Honda",
       "id": 3
+    },
+    {
+      "selectCategory": "Bus",
+      "id": 4
     }
   ]
 }

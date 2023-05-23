@@ -14,14 +14,14 @@ function App() {
   const { isLogin } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
-    if (isLogin) {
+    if (!isLogin) {
       navigate("/homePage");
     } else {
       navigate("/signIn");
     }
   }, []);
   // return <Category />;
-  if (isLogin) {
+  if (!isLogin) {
     return (
       <div>
         <Navbar />
